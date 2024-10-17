@@ -4,18 +4,19 @@
   "private": true,
   "scripts": {
     "dev": "next dev --port=4000",
-    "dev:bridge": "npx novu@latest dev --port=4000",
+    "dev:bridge": "npx novu@latest dev",
     "build": "next build",
     "start": "next start --port=4000",
-    "start:script": "bash start-servers.sh",
-    "lint": "next lint",
-    "sync":"npx novu@latest sync --bridge-url http://localhost:4000/api/novu --secret-key 5d8e8966bc3060ab827482ed2e4a78f0"
+    "start:tunnel": "cloudflared tunnel --url http://localhost:4000",
+    "start:server": "concurrently \"npm run start\" \"npm run start:tunnel\" ",
+    "lint": "next lint"
   },
   "dependencies": {
     "@novu/framework": "latest",
     "@react-email/components": "0.0.18",
     "@react-email/tailwind": "0.0.18",
     "next": "14.2.3",
+    "novu": "^2.0.1",
     "react": "^18",
     "react-dom": "^18",
     "zod": "^3.23.8",
