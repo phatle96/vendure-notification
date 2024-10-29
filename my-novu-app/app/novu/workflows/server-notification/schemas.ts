@@ -5,5 +5,5 @@ export const payloadSchema = z.object({
 })
 
 export const controlSchema = z.object({
-    subject: z.string().default("User")
+
 })
