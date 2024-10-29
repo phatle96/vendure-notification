@@ -4,15 +4,16 @@ import { controlSchema, payloadSchema } from "./schemas";
 export const serverNotification = workflow(
     "server-notification",
     async ({ step, payload }) => {
-        await step.inApp("inbox", async () => {
+        await step.inApp("inbox", async (control) => {
             return {
-                subject: 'A message from Admin',
+                subject: control.subject,
                 body: payload.message
             }
         }
         )
     },
     {
+        controlSchema,
         payloadSchema,
         tags: ["server-notification"],
     },
