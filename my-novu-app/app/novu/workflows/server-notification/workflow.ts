@@ -9,8 +9,13 @@ export const serverNotification = workflow(
                 subject: 'A message from Admin',
                 body: payload.message
             }
-        }
-        )
+        });
+        await step.push('push', async () => {
+            return {
+                subject: 'A message from Admin',
+                body: payload.message,
+            };
+        });
     },
     {
         payloadSchema,
