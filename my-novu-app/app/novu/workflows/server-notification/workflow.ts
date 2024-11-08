@@ -6,11 +6,16 @@ export const serverNotification = workflow(
     async ({ step, payload }) => {
         await step.inApp("inbox", async () => {
             return {
-                subject: 'A message from Admin',
+                subject: payload.subject ?? "You got a message!",
                 body: payload.message
             }
-        }
-        )
+        });
+        await step.push('push', async () => {
+            return {
+                subject: payload.subject ?? "You got a message!",
+                body: payload.message,
+            };
+        });
     },
     {
         payloadSchema,
