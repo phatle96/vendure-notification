@@ -9,7 +9,7 @@ SERVER_PID=$!
 
 sleep 15
 
-npx novu sync -b $HOST_URL/api/novu -s $NOVU_SECRET_KEY
+npx novu sync -b $NOVU_BRIDGE_URL -s $NOVU_SECRET_KEY
 
 # Monitor the server log file in real-time (optional)
 tail -f server_output.log &
